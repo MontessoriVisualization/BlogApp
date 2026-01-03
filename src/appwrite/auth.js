@@ -53,6 +53,18 @@ export class AuthService {
       throw error;
     }
   }
+  async googleLogin() {
+    try {
+      const response = await this.account.createOAuth2Session({
+        provider: "google",
+        success: "http://localhost:5173", // Adjust according to your frontend URL
+        failure: "http://localhost:5173", // Adjust according to your frontend URL
+      });
+      return response;
+    } catch (error) {
+      console.error("Google Login Error:", error);
+    }
+  }
 }
 const authService = new AuthService();
 export default authService;
